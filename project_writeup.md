@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./images/visualization.jpg "Visualization"
+[image1]: ./images/dataset_repartition.jpg "Data repartition"
 [image2]: ./images/grayscale_normalization.jpg "Grayscaling&Normalization"
 [image3]: ./images/random_noise.jpg "Random Noise"
 [image4]: ./images/0.png "Traffic Sign 1"
@@ -31,7 +31,7 @@ The goals / steps of this project are the following:
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/WbHappy/traffic-sign-classifier-project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
