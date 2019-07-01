@@ -126,7 +126,7 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
+All images I took had the correct input size (32x32). They seem to be easily classifiable, the only visible challenge on those images is the variation of light.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -134,33 +134,64 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Keep right      		| Keep right   									| 
+| Speed limit (20 km/h) | Speed limit (20 km/h)							|
+| Keep left				| Keep left										|
+| No entry	      		| No entry					 					|
+| Roundabout mandatory	| Roundabout mandatory							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. This compares more favorably to the accuracy on the test set of 93.8%. These new traffic signs were fairly easily detected. I am rather sure that taking some traffic signs from Australia or any other country that has some slight changes will reduce the accuracy.
+The training set, and therefore the model, can greatly be improved using different traffic signs from all over the world.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 15th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For three out of five images, the model is 100% sure of his detection. Good news he is right. The top five soft max probabilities for the five signs are : 
 
+First image, Keep right :
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 1.0         			| Keep right 									| 
+| .0     				| Road work 									|
+| .0					| Wild animals crossing							|
+| .0	      			| General caution					 			|
+| .0				    | Pedestrians      								|
 
 
-For the second image ... 
+For the second image, Speed limit (20 km/h):
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0         			| Speed limit (20 km/h)							| 
+| .0     				| Children crossing								|
+| .0					| Righ-of-way at the next intersection			|
+| .0	      			| Slippery Road 					 			|
+| .0				    | Dangerous curve to the left					|
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+For the third image, Keep left:
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0         			| Keep left										| 
+| .0     				| Speed limit (50 km/h)							|
+| .0					| Double curve									|
+| .0	      			| Speed limit (100km/h)				 			|
+| .0				    | Yield											|
 
+For the fourth image, No entry:
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 0.99674      			| No entry										| 
+| .00326   				| Stop											|
+| .0					| Turn right ahead								|
+| .0	      			| Yield								 			|
+| .0				    | Go straight or left							|
 
+For the fifth image, roudabout mandatory:
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 0.99674      			| Roudabout mandatory							| 
+| .00326   				| Speed limit (100km/h)							|
+| .0					| Vehicles over 3.5 metriic tons prohibited		|
+| .0	      			| Righ-of-way at the next intersection			|
+| .0				    | Priority road 								|
