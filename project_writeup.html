@@ -1072,7 +1072,7 @@ body .markdown-body
 <p>You&rsquo;re reading it! and here is a link to my <a href="https://github.com/WbHappy/traffic-sign-classifier-project/blob/master/Traffic_Sign_Classifier.ipynb">project code</a></p>
 <h3 id="data-set-summary-exploration">Data Set Summary &amp; Exploration<a class="headerlink" href="#data-set-summary-exploration" title="Permanent link"></a></h3>
 <h4 id="1-provide-a-basic-summary-of-the-data-set-in-the-code-the-analysis-should-be-done-using-python-numpy-andor-pandas-methods-rather-than-hardcoding-results-manually">1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.<a class="headerlink" href="#1-provide-a-basic-summary-of-the-data-set-in-the-code-the-analysis-should-be-done-using-python-numpy-andor-pandas-methods-rather-than-hardcoding-results-manually" title="Permanent link"></a></h4>
-<p>I used the nupy library to calculate summary statistics of the traffic
+<p>I used the numpy library to calculate summary statistics of the traffic
 signs data set in 2nd cell of the Ipython notebook:</p>
 <ul>
 <li>The size of training set is 34799.</li>
@@ -1104,56 +1104,93 @@ signs data set in 2nd cell of the Ipython notebook:</p>
 <td align="center">32x32x3 RGB image</td>
 </tr>
 <tr>
-<td align="center">Convolution 3x3</td>
-<td align="center">1x1 stride, same padding, outputs 32x32x64</td>
+<td align="center">Convolution 5x5</td>
+<td align="center">1x1 stride, Valid padding, outputs 28x28x6</td>
 </tr>
 <tr>
 <td align="center">RELU</td>
-<td align="center"></td>
+<td align="center">No change on shape</td>
 </tr>
 <tr>
 <td align="center">Max pooling</td>
-<td align="center">2x2 stride,  outputs 16x16x64</td>
+<td align="center">2x2 stride, Valid padding, outputs 14x14x6</td>
 </tr>
 <tr>
-<td align="center">Convolution 3x3</td>
-<td align="center">etc.</td>
+<td align="center">Convolution 5x5</td>
+<td align="center">1x1 stride, Valid padding, outputs 10x10x16</td>
+</tr>
+<tr>
+<td align="center">RELU</td>
+<td align="center">No change on shape</td>
+</tr>
+<tr>
+<td align="center">Max pooling</td>
+<td align="center">2x2 stride, Valid padding, outputs 5x5x16</td>
+</tr>
+<tr>
+<td align="center">Flatten(1)</td>
+<td align="center">Output : 400</td>
+</tr>
+<tr>
+<td align="center">Convolution 5x5</td>
+<td align="center">1x1 stride, Valid padding, outputs 1x1x400</td>
+</tr>
+<tr>
+<td align="center">RELU</td>
+<td align="center">No change on shape</td>
+</tr>
+<tr>
+<td align="center">Flatten(2)</td>
+<td align="center">Output : 400</td>
+</tr>
+<tr>
+<td align="center">Concat(1+2)</td>
+<td align="center">Output : 800</td>
+</tr>
+<tr>
+<td align="center">Dropout</td>
+<td align="center">No change on shape</td>
 </tr>
 <tr>
 <td align="center">Fully connected</td>
-<td align="center">etc.</td>
+<td align="center">Input : 800 Output : 400</td>
 </tr>
 <tr>
-<td align="center">Softmax</td>
-<td align="center">etc.</td>
+<td align="center">RELU</td>
+<td align="center">No change on shape</td>
 </tr>
 <tr>
-<td align="center"></td>
-<td align="center"></td>
+<td align="center">Fully connected</td>
+<td align="center">Input : 400 Output : 120</td>
 </tr>
 <tr>
-<td align="center"></td>
-<td align="center"></td>
+<td align="center">RELU</td>
+<td align="center">No change on shape</td>
+</tr>
+<tr>
+<td align="center">Fully connected</td>
+<td align="center">Input : 120 Output : 43</td>
 </tr>
 </tbody>
 </table>
 <h4 id="3-describe-how-you-trained-your-model-the-discussion-can-include-the-type-of-optimizer-the-batch-size-number-of-epochs-and-any-hyperparameters-such-as-learning-rate">3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.<a class="headerlink" href="#3-describe-how-you-trained-your-model-the-discussion-can-include-the-type-of-optimizer-the-batch-size-number-of-epochs-and-any-hyperparameters-such-as-learning-rate" title="Permanent link"></a></h4>
-<p>To train the model, I used an ....</p>
+<p>To train the model, I did not use any GPU, only my CPU and.. some patience !
+For the next project I will most likely make use of my 50h GPU workspace to do more testing.</p>
+<ul>
+<li>Learning rate : 0.0009 (tested with a lot of different values).</li>
+<li>Epochs : 60</li>
+<li>Batch_size : 128</li>
+</ul>
+<p>I had to play around mostly with the learning rate and Epochs to get a good score on the training set and validation set. The test set accuracy was then good enough to validate the project.</p>
 <h4 id="4-describe-the-approach-taken-for-finding-a-solution-and-getting-the-validation-set-accuracy-to-be-at-least-093-include-in-the-discussion-the-results-on-the-training-validation-and-test-sets-and-where-in-the-code-these-were-calculated-your-approach-may-have-been-an-iterative-process-in-which-case-outline-the-steps-you-took-to-get-to-the-final-solution-and-why-you-chose-those-steps-perhaps-your-solution-involved-an-already-well-known-implementation-or-architecture-in-this-case-discuss-why-you-think-the-architecture-is-suitable-for-the-current-problem">4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.<a class="headerlink" href="#4-describe-the-approach-taken-for-finding-a-solution-and-getting-the-validation-set-accuracy-to-be-at-least-093-include-in-the-discussion-the-results-on-the-training-validation-and-test-sets-and-where-in-the-code-these-were-calculated-your-approach-may-have-been-an-iterative-process-in-which-case-outline-the-steps-you-took-to-get-to-the-final-solution-and-why-you-chose-those-steps-perhaps-your-solution-involved-an-already-well-known-implementation-or-architecture-in-this-case-discuss-why-you-think-the-architecture-is-suitable-for-the-current-problem" title="Permanent link"></a></h4>
-<p>My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?</p>
-<p>If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?</p>
-<p>If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model&rsquo;s accuracy on the training, validation and test set provide evidence that the model is working well?</p>
+<p>My final model results were:</p>
+<ul>
+<li>training set accuracy of 100% (1.0)</li>
+<li>validation set accuracy of 95.2% (0.952)</li>
+<li>test set accuracy of 93.8%(0.938)</li>
+</ul>
+<p>I started from the original Lenet implementation made during a previous lesson. It was obviously choosen since it is a good starting point as multiple layers were implemented but also because it was doing greate with lines and curves detection which are obviously the main geometric shapes in traffic signs.</p>
+<p>I tested some <em>division</em> of one of my layer (one was directly flattened while aplying a convolution on the other) right before concatenating them and then to reduce  overfitting I used dropout which had a really good impact on the validation set accuracy. </p>
 <h3 id="test-a-model-on-new-images">Test a Model on New Images<a class="headerlink" href="#test-a-model-on-new-images" title="Permanent link"></a></h3>
 <h4 id="1-choose-five-german-traffic-signs-found-on-the-web-and-provide-them-in-the-report-for-each-image-discuss-what-quality-or-qualities-might-be-difficult-to-classify">1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.<a class="headerlink" href="#1-choose-five-german-traffic-signs-found-on-the-web-and-provide-them-in-the-report-for-each-image-discuss-what-quality-or-qualities-might-be-difficult-to-classify" title="Permanent link"></a></h4>
 <p>Here are five German traffic signs that I found on the web:</p>
