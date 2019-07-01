@@ -17,9 +17,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./images/dataset_repartition.jpg "Data repartition"
-[image2]: ./images/grayscale_normalization.jpg "Grayscaling&Normalization"
-[image3]: ./images/random_noise.jpg "Random Noise"
+[image1]: ./images/dataset_repartition.png "Data repartition"
+[image2]: ./images/grayscale_normalization.png "Grayscaling&Normalization"
 [image4]: ./images/0.png "Traffic Sign 1"
 [image5]: ./images/17.png "Traffic Sign 2"
 [image6]: ./images/38.png "Traffic Sign 3"
@@ -37,42 +36,30 @@ You're reading it! and here is a link to my [project code](https://github.com/Wb
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the pandas library to calculate summary statistics of the traffic
-signs data set:
+I used the nupy library to calculate summary statistics of the traffic
+signs data set in 2nd cell of the Ipython notebook:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is 34799.
+* The size of the validation set is 4410.
+* The size of test set is 12630.
+* The shape of a traffic sign image is (32, 32, 3).
+* The number of unique classes/labels in the data set is 43.
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
-
+Here is an exploratory visualization of the data set. It is a bar chart showing how the data is distributed. There are as many bars as there are classes.
 ![alt text][image1]
 
 ### Design and Test a Model Architecture
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because ...
+After gooing through the LeCun and Semanet [paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) (Traffic Sign Recognition with Multi-Scale Convolutional Networks) paper Grayscaling and normalization is clearly advised to help the classification and training time. Of course this was also presented during the training class preceding this project.
 
-Here is an example of a traffic sign image before and after grayscaling.
+
+Here is an example of a traffic sign image after grayscaling. and normalization :
 
 ![alt text][image2]
-
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -100,9 +87,9 @@ To train the model, I used an ....
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 95.2% (0.952)
+* validation set accuracy of 
+* test set accuracy of 93.8%(0.938)
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -151,6 +138,7 @@ The code for making predictions on my final model is located in the 15th cell of
 For three out of five images, the model is 100% sure of his detection. Good news he is right. The top five soft max probabilities for the five signs are : 
 
 First image, Keep right :
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.0         			| Keep right 									| 
@@ -161,6 +149,7 @@ First image, Keep right :
 
 
 For the second image, Speed limit (20 km/h):
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.0         			| Speed limit (20 km/h)							| 
@@ -170,6 +159,7 @@ For the second image, Speed limit (20 km/h):
 | .0				    | Dangerous curve to the left					|
 
 For the third image, Keep left:
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.0         			| Keep left										| 
@@ -179,6 +169,7 @@ For the third image, Keep left:
 | .0				    | Yield											|
 
 For the fourth image, No entry:
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.99674      			| No entry										| 
@@ -188,6 +179,7 @@ For the fourth image, No entry:
 | .0				    | Go straight or left							|
 
 For the fifth image, roudabout mandatory:
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.99674      			| Roudabout mandatory							| 
